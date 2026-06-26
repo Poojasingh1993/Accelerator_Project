@@ -1,0 +1,28 @@
+resources:
+  jobs:
+    ingestionmetadata_setup:
+      name: IngestionMetadata_Setup
+      tasks:
+        - task_key: Ingestion_Metadata
+          disabled: false
+          email_notifications: {}
+          environment_key: Default
+          notebook_task:
+            base_parameters:
+              Environment: test
+            notebook_path: ../src/ingestionmetadata_setup/Setup_NB.py
+            source: WORKSPACE
+          run_if: ALL_SUCCESS
+          timeout_seconds: 0
+      email_notifications:
+        no_alert_for_skipped_runs: false
+      environments:
+        - environment_key: Default
+          spec:
+            environment_version: "5"
+      max_concurrent_runs: 1
+      performance_target: PERFORMANCE_OPTIMIZED
+      queue:
+        enabled: true
+      timeout_seconds: 0
+      webhook_notifications: {}
